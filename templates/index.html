@@ -31,6 +31,7 @@
     <nav class="nav-links" id="primary-nav" aria-label="Main navigation">
       <a href="#about">About</a>
       <a href="#work">Projects</a>
+      <a href="#skills">Skills</a>
       <a href="#approach">Approach</a>
       <a class="nav-contact" href="#contact">Let's talk <span aria-hidden="true">↗</span></a>
     </nav>
@@ -105,6 +106,16 @@
         {% endfor %}
       </div>
       <p class="projects-note"><span aria-hidden="true">✳</span> Every project is a work in progress — always learning, refining, and building better.</p>
+    </section>
+
+    <section class="skills-section section-wrap" id="skills">
+      <div class="section-heading">
+        <div><p class="section-kicker">TOOLS & TECHNOLOGIES</p><h2>What I work <span class="gradient-text">with.</span></h2></div>
+        <p class="section-aside">A practical toolkit for turning ideas into maintainable web products and useful digital experiences.</p>
+      </div>
+      <div class="skills-list" aria-label="Technical skills">
+        {% for skill in skills %}<span class="skill-pill">{{ skill }}</span>{% endfor %}
+      </div>
     </section>
 
     <section class="about-section section-wrap" id="about">
