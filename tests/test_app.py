@@ -50,3 +50,11 @@ def test_projects_json_can_override_default_list(monkeypatch):
     assert response.status_code == 200
     assert b"Configured project" in response.data
     assert b"Digital Read" not in response.data
+
+def test_skills_section_and_contact_email_render():
+    response = app.test_client().get("/")
+
+    assert response.status_code == 200
+    assert b"TOOLS &amp; TECHNOLOGIES" in response.data or b"TOOLS & TECHNOLOGIES" in response.data
+    assert b"Python" in response.data
+    assert b"ssempijjadeogratius256@gmail.com" in response.data
