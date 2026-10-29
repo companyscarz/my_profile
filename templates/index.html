@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="{{ profile.intro }}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ profile.name }} — {{ profile.headline }}">
+  <meta property="og:description" content="{{ profile.intro }}">
+  {% if profile.website_url %}<meta property="og:url" content="{{ profile.website_url }}">{% endif %}
+  {% if profile.profile_image_url %}<meta property="og:image" content="{{ profile.profile_image_url }}">{% endif %}
+  <title>{{ profile.name }} — Developer & Digital Builder</title>
+  {% if profile.favicon_url %}<link rel="icon" href="{{ profile.favicon_url }}">{% else %}<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%230b1020'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial' font-size='27' font-weight='700' fill='%23f4bd67'%3ESD%3C/text%3E%3C/svg%3E">{% endif %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="page-glow page-glow-one" aria-hidden="true"></div>
+  <div class="page-glow page-glow-two" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="{{ profile.name }} home">
+      {% if profile.logo_url %}<img class="brand-image" src="{{ profile.logo_url }}" alt="{{ profile.name }} logo">{% else %}<span class="brand-mark">SD<span>.</span></span>{% endif %}
+      <span class="brand-name">{{ profile.name }}</span>
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav">
+      <span></span><span></span>
+    </button>
+    <nav class="nav-links" id="primary-nav" aria-label="Main navigation">
+      <a href="#about">About</a>
+      <a href="#work">Projects</a>
+      <a href="#approach">Approach</a>
+      <a class="nav-contact" href="#contact">Let's talk <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero section-wrap" id="home">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="status-dot"></span>{{ profile.availability }}</div>
+        <p class="hero-kicker">HELLO, I'M {{ profile.name|upper }}</p>
+        <h1>I build digital things<br>that <span class="gradient-text">make a difference.</span></h1>
+        <p class="hero-description">{{ profile.intro }}</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#work">Explore my work <span aria-hidden="true">↘</span></a>
+          {% if profile.email %}<a class="button button-quiet" href="mailto:{{ profile.email }}">Get in touch <span aria-hidden="true">↗</span></a>{% else %}<a class="button button-quiet" href="#contact">Get in touch <span aria-hidden="true">↗</span></a>{% endif %}
+        </div>
+        <div class="hero-meta">
+          <span class="location-pin" aria-hidden="true">⌖</span>
+          <span>Based in {{ profile.location }}</span>
+          <span class="meta-divider"></span>
+          <span>Building for the real world</span>
+        </div>
+      </div>
+      <div class="hero-visual" aria-label="Profile introduction">
+        <div class="visual-orbit orbit-one"></div>
+        <div class="visual-orbit orbit-two"></div>
+        <div class="visual-card visual-card-main">
+          {% if profile.profile_image_url %}
+          <img class="profile-photo" src="{{ profile.profile_image_url }}" alt="Portrait of {{ profile.name }}">
+          {% else %}
+          <div class="profile-initials" aria-hidden="true">SD<span>.</span></div>
+          {% endif %}
+          <div class="visual-card-footer">
+            <div><span class="tiny-label">CURRENTLY FOCUSED ON</span><strong>Ideas → Useful software</strong></div>
+            <span class="sparkle" aria-hidden="true">✳</span>
+          </div>
+        </div>
+        <div class="floating-chip chip-top"><span class="chip-icon">✦</span> Curious by nature</div>
+        <div class="floating-chip chip-bottom"><span class="chip-pulse"></span> From idea to impact</div>
+        <div class="visual-spark visual-spark-one">✳</div>
+        <div class="visual-spark visual-spark-two">+</div>
+      </div>
+      <a class="scroll-cue" href="#work"><span class="scroll-line"></span> SCROLL TO EXPLORE</a>
+    </section>
+
+    <section class="work-section section-wrap" id="work">
+      <div class="section-heading">
+        <div><p class="section-kicker">SELECTED WORK</p><h2>Projects with a <span class="gradient-text">purpose.</span></h2></div>
+        <p class="section-aside">A growing collection of digital products built around practical problems and real people.</p>
+      </div>
+      <div class="project-grid">
+        {% for project in projects %}
+        <article class="project-card accent-{{ project.accent if project.accent in ['blue', 'orange', 'violet', 'teal', 'pink', 'green'] else 'blue' }}">
+          <div class="project-art">
+            <div class="art-grid" aria-hidden="true"></div>
+            <div class="project-monogram" aria-hidden="true">{{ project.name[:1]|upper }}</div>
+            <span class="project-index">{{ "%02d"|format(loop.index) }}</span>
+            <span class="project-category">{{ project.category }}</span>
+            <span class="art-orbit art-orbit-a" aria-hidden="true"></span>
+            <span class="art-orbit art-orbit-b" aria-hidden="true"></span>
+          </div>
+          <div class="project-content">
+            <div class="project-title-row"><h3>{{ project.name }}</h3><span class="project-arrow" aria-hidden="true">↗</span></div>
+            <p>{{ project.description }}</p>
+            {% if project.stack %}<div class="tag-list">{% for tag in project.stack %}<span>{{ tag }}</span>{% endfor %}</div>{% endif %}
+            <div class="project-links">
+              {% if project.demo_url %}<a href="{{ project.demo_url }}" target="_blank" rel="noopener noreferrer">Live project <span aria-hidden="true">↗</span></a>{% else %}<span class="link-pending">Demo link coming soon</span>{% endif %}
+              {% if project.repo_url %}<a class="repo-link" href="{{ project.repo_url }}" target="_blank" rel="noopener noreferrer">Source code <span aria-hidden="true">↗</span></a>{% endif %}
+            </div>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+      <p class="projects-note"><span aria-hidden="true">✳</span> Every project is a work in progress — always learning, refining, and building better.</p>
+    </section>
+
+    <section class="about-section section-wrap" id="about">
+      <div class="about-label"><span class="section-kicker">A LITTLE ABOUT ME</span><span class="about-line"></span></div>
+      <div class="about-content">
+        <h2>Technology is most powerful when it <span class="gradient-text">helps people move forward.</span></h2>
+        <p>{{ profile.about }}</p>
+        <div class="about-links">
+          {% if profile.github_url %}<a href="{{ profile.github_url }}" target="_blank" rel="noopener noreferrer">Explore my GitHub <span aria-hidden="true">↗</span></a>{% endif %}
+          {% if profile.linkedin_url %}<a href="{{ profile.linkedin_url }}" target="_blank" rel="noopener noreferrer">Connect on LinkedIn <span aria-hidden="true">↗</span></a>{% endif %}
+        </div>
+      </div>
+    </section>
+
+    <section class="approach-section section-wrap" id="approach">
+      <div class="section-heading">
+        <div><p class="section-kicker">HOW I THINK</p><h2>Good work starts with <span class="gradient-text">good questions.</span></h2></div>
+        <p class="section-aside">I aim to build with intention: understand the problem, keep the experience clear, and improve through feedback.</p>
+      </div>
+      <div class="principle-grid">
+        <article class="principle"><span class="principle-number">01</span><span class="principle-icon" aria-hidden="true">⌕</span><h3>Understand first</h3><p>Start with the people, their needs, and the problem worth solving.</p></article>
+        <article class="principle"><span class="principle-number">02</span><span class="principle-icon" aria-hidden="true">◇</span><h3>Keep it useful</h3><p>Make technology approachable, practical, and focused on what matters.</p></article>
+        <article class="principle"><span class="principle-number">03</span><span class="principle-icon" aria-hidden="true">↗</span><h3>Improve constantly</h3><p>Test, learn, listen, and make thoughtful improvements over time.</p></article>
+      </div>
+    </section>
+
+    <section class="contact-section section-wrap" id="contact">
+      <div class="contact-panel">
+        <div class="contact-decoration" aria-hidden="true"><span></span><span></span><span></span></div>
+        <p class="section-kicker">HAVE SOMETHING IN MIND?</p>
+        <h2>Let's make something<br><span class="gradient-text">meaningful.</span></h2>
+        <p class="contact-copy">Have a project, an opportunity, or an idea you'd like to explore? I'd be glad to hear from you.</p>
+        <div class="contact-actions">
+          {% if profile.email %}<a class="button button-primary" href="mailto:{{ profile.email }}">Email me <span aria-hidden="true">↗</span></a>{% else %}<span class="button button-primary button-disabled">Email details coming soon</span>{% endif %}
+          {% if profile.github_url %}<a class="button button-outline" href="{{ profile.github_url }}" target="_blank" rel="noopener noreferrer">Find me on GitHub <span aria-hidden="true">↗</span></a>{% endif %}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer section-wrap">
+    <a class="footer-brand" href="#home">{% if profile.logo_url %}<img class="brand-image" src="{{ profile.logo_url }}" alt="">{% else %}<span class="brand-mark">SD<span>.</span></span>{% endif %}<span>{{ profile.name }}</span></a>
+    <p>Built with intention in {{ profile.location }}.</p>
+    <a class="back-top" href="#home">Back to top ↑</a>
+  </footer>
+  <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+</body>
+</html>
