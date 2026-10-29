@@ -2,8 +2,10 @@ import json
 import os
 from urllib.parse import urlparse
 
+from dotenv import load_dotenv
 from flask import Flask, render_template
 
+load_dotenv()
 app = Flask(__name__)
 
 
@@ -29,13 +31,16 @@ def _load_projects():
                     title = str(item.get("name", "")).strip()
                     if not title:
                         continue
+                    stack = item.get("stack", [])
+                    if not isinstance(stack, list):
+                        stack = []
                     projects.append({
                         "name": title,
                         "category": str(item.get("category", "Software")).strip() or "Software",
                         "description": str(item.get("description", "")).strip(),
                         "stack": [
                             str(tag).strip()
-                            for tag in item.get("stack", [])
+                            for tag in stack
                             if str(tag).strip()
                         ][:5],
                         "demo_url": _http_url(item.get("url")),
