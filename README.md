@@ -4,7 +4,7 @@ A responsive personal portfolio for **Ssempijja Deogratius**, built with Flask a
 
 ## Features
 
-- Responsive portfolio layout with About, Projects, Approach, and Contact sections.
+- Responsive portfolio layout with About, Projects, Skills, Approach, and Contact sections.
 - Project cards show live demos and source repositories when links are configured.
 - Optional profile photo, logo, and favicon via public HTTP(S) URLs.
 - Project list can be customized with `PROJECTS_JSON`.
@@ -27,7 +27,7 @@ pip install -r requirements.txt
 python app.py
 ```
 
-The app starts on port 8000 by default. Set `PORT` to override it. Flask does not automatically load the `.env.example` file, so export variables in your shell or use your deployment platform's environment settings.
+The app starts on **port 8000 by default** (`http://127.0.0.1:8000`). Set `PORT` to override it. Copy `.env.example` to `.env` and adjust the values for local development; `python-dotenv` loads `.env` automatically. Do not commit `.env` or put secrets in it.
 
 ## Environment configuration
 
