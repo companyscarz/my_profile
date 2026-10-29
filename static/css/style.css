@@ -219,3 +219,10 @@ button { font: inherit; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
 }
+
+/* Skills section */
+.skills-section { padding-top: 76px; padding-bottom: 84px; border-top: 1px solid rgba(194,207,231,.08); }
+.skills-list { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 30px; }
+.skill-pill { display: inline-flex; align-items: center; min-height: 43px; padding: 10px 15px; border: 1px solid rgba(194,207,231,.14); border-radius: 12px; background: linear-gradient(135deg, rgba(25,35,57,.8), rgba(15,22,38,.72)); color: #d9e2f4; font-size: 12px; font-weight: 600; }
+.skill-pill::before { content: "✦"; margin-right: 9px; color: var(--gold); font-size: 10px; }
+@media (max-width: 680px) { .skills-section { padding-top: 55px; padding-bottom: 62px; } .skills-list { gap: 8px; margin-top: 22px; } .skill-pill { min-height: 39px; padding: 9px 11px; font-size: 11px; } }
