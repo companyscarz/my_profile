@@ -105,7 +105,7 @@ def index():
             "PROFILE_INTRO",
             "I turn practical ideas into thoughtful digital experiences — from education and commerce to business tools and logistics.",
         ).strip(),
-        "email": os.getenv("PROFILE_EMAIL", "").strip(),
+        "email": os.getenv("PROFILE_EMAIL", "ssempijjadeogratius256@gmail.com").strip(),
         "github_url": _http_url(os.getenv("GITHUB_URL", "https://github.com/companyscarz")),
         "linkedin_url": _http_url(os.getenv("LINKEDIN_URL")),
         "website_url": _http_url(os.getenv("PROFILE_WEBSITE_URL")),
@@ -118,7 +118,12 @@ def index():
             "I enjoy building software that solves real problems. My work spans web applications, digital learning, e-commerce, business tools, and customer-focused platforms. I value practical solutions, steady improvement, and building responsibly.",
         ).strip(),
     }
-    return render_template("index.html", profile=profile, projects=projects)
+    skills = [
+        "Python", "Flask", "PostgreSQL", "HTML · CSS · JavaScript",
+        "AI-powered applications", "Progressive Web Apps", "API integration",
+        "Deployment & hosting",
+    ]
+    return render_template("index.html", profile=profile, projects=projects, skills=skills)
 
 
 @app.get("/health")
